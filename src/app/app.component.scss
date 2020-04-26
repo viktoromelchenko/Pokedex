@@ -1,0 +1,20 @@
+.main{
+    display: flex;
+}
+.pokedex{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.card{
+    width: 28%;
+    height: 50%;
+    border: 1px dashed red;
+    margin: 10px;
+}
+.info{
+    width: 50%;
+    background: yellow;
+}
