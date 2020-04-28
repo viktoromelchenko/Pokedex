@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="info">
-        <div class="info_pokemon"  *ngIf="view">
+        <div class="info_pokemon" *ngIf="view">
           <img class="img_info" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{ view?.id | number:'3.0'}}.png">
           <div class="name_pokemon">
             <h4 clas="pokedex_name">{{view?.name | titlecase}}</h4>
