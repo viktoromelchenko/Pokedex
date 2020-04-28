@@ -1,6 +1,13 @@
 .main{
     display: flex;
 }
+.logo{
+    width: 35%;
+    padding: 10px;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid black;
+}
 .pokedex{
     width: 50%;
     height: 100%;
@@ -77,4 +84,15 @@
 }
 .btn {
     margin: 0px 20px;
+}
+.buttons{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.type{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }

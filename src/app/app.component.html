@@ -1,4 +1,4 @@
-<h3>Pokedex</h3>
+<h1 class="logo">Pokedex</h1>
 <div class="main">
     <div class="pokedex">
         <div class="card" *ngFor="let pokemon of Pokemons; let i=index" (click)="onePokemon(this.pokemon)">
@@ -10,9 +10,12 @@
         <div class="info_pokemon" *ngIf="view">
           <img class="img_info" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{ view?.id | number:'3.0'}}.png">
           <div class="name_pokemon">
-            <h4 clas="pokedex_name">{{view?.name | titlecase}}</h4>
+            <h4 class="pokedex_name">{{view?.name | titlecase}}</h4>
             <h4>#</h4>
             <h4>{{ view?.id | number:'3.0'}}</h4>
+          </div>
+          <div class="type">
+            <p  *ngFor="let type of type">{{ type.name }}</p>
           </div>
           <div class="tab">
             <div class="name_stat" >

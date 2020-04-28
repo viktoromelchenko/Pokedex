@@ -42,6 +42,8 @@ export class AppComponent implements OnInit {
   stat =[];
   statName = [];
   weight: number;
+  types = [];
+  type = []
   
   url:string = 'http://pokeapi.co/api/v2/pokemon/?limit=12'
  
@@ -84,20 +86,25 @@ export class AppComponent implements OnInit {
   
   onePokemon( pokemon: Ipokemon ) {
     this.statName = [];
+    this.type = []
     this.view = pokemon
       this.http.get<any>(`${pokemon.url}`)
         .subscribe(stats => {
             this.infoPokemon = stats
             this.stat = stats.stats
+            this.types = stats.types
             this.weight = stats.weight
             this.stat.reverse()
             this.stat.splice(0,3,this.stat[1],this.stat[2],this.stat[0])
             for(let i=0;i<this.stat.length; i++){
               this.statName.push(this.stat[i].stat)
             }
-            console.log(this.view.name)
-            console.log(this.infoPokemon)
-            console.log(this.weight)
+            for(let i=0;i<this.types.length; i++){
+              this.type.push(this.types[i].type)
+            }
+            // console.log(this.view.name)
+            // console.log(this.infoPokemon)
+            console.log(this.type)
        });
       
   }
