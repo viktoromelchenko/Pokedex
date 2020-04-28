@@ -2,21 +2,35 @@
 <div class="main">
     <div class="pokedex">
         <div class="card" *ngFor="let pokemon of Pokemons; let i=index" (click)="onePokemon(this.pokemon)">
-            <img src="" alt="">
-            <p>{{ pokemon.id }}</p>
+            <img src= "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{ pokemon.id | number:'3.0'}}.png" alt="" class="img_list">
             <p>{{ pokemon.name }}</p>
         </div>
     </div>
     <div class="info">
         <div class="info_pokemon">
-            <p>{{view?.id}}</p>
-            <p>{{view?.name}}</p>
+          <img class="img_info" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{ view?.id | number:'3.0'}}.png">
+          <div class="name_pokemon">
+            <h4 clas="pokedex_name">{{view?.name | titlecase}}</h4>
+            <h4>#</h4>
+            <h4>{{ view?.id | number:'3.0'}}</h4>
+          </div>
+          <div class="tab">
+            <div class="name_stat" >
+              <p class="name_text" *ngFor="let name of statName">{{name.name | titlecase}}</p>
+              <p class="name_text">Weight</p>
+            </div>
+            <div class="point" >
+              <p class="point_namber" *ngFor="let point of stat">{{point.base_stat}}</p>
+              <p  class="point_namber">{{ weight }}</p>
+            </div>
+            <!-- <p>{{weight }}</p> -->
+          </div>
         </div>
     </div>
 </div>
 <div class="buttons">
     
-    <button (click)="previousList()" [disabled]="count==0"> Previus </button>
-    <button (click)="nextList()"> Next</button>
+    <button  class="btn-danger btn" (click)="previousList()" [disabled]="count==0"> Previus </button>
+    <button class="btn-success btn" (click)="nextList()"> Next</button>
 
 </div>

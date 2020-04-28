@@ -10,12 +10,17 @@ export interface Ipokemon {
   url: string;
 }
 
+
 // export class Pokemon implements Ipokemon{
 //   constructor(
 //     public id: number,
 //     public name: string,
 //     public url: string,
 //   ){}
+// }
+
+// export interface Istat {
+
 // }
 
 
@@ -32,8 +37,11 @@ export class AppComponent implements OnInit {
   previous:string;
   id: number;
   count:number = 0;
-  pokemon: Ipokemon
-  view: Ipokemon
+  view: Ipokemon;
+  infoPokemon: Array<any>;
+  stat =[];
+  statName = [];
+  weight: number;
   
   url:string = 'http://pokeapi.co/api/v2/pokemon/?limit=12'
  
@@ -56,32 +64,41 @@ export class AppComponent implements OnInit {
             this.Pokemons[i].id = i+1*(this.count*12+1)
           }
         }
-        console.log(this.Pokemons)
+        // console.log(this.Pokemons)
       })
 
   }
   nextList(){
      this.url = this.next;
      this.count++;
-     console.log(this.count)
+    //  console.log(this.count)
      this.ngOnInit();
   }
 
   previousList(){
     this.url = this.previous;
     this.count--;
-    console.log(this.count)
+    // console.log(this.count)
     this.ngOnInit();
   }
   
   onePokemon( pokemon: Ipokemon ) {
-    console.log(pokemon)
+    this.statName = [];
     this.view = pokemon
-      // this.http.get<Ipokemon>(`${this.pokemon.url}/${this.pokemon.id}`)
-      //   .subscribe(pokemon => {
-      //       this.view = pokemon
-      //       console.log(this.view)
-      //  });
-      console.log(pokemon.url,pokemon.id)
+      this.http.get<any>(`${pokemon.url}`)
+        .subscribe(stats => {
+            this.infoPokemon = stats
+            this.stat = stats.stats
+            this.weight = stats.weight
+            this.stat.reverse()
+            this.stat.splice(0,3,this.stat[1],this.stat[2],this.stat[0])
+            for(let i=0;i<this.stat.length; i++){
+              this.statName.push(this.stat[i].stat)
+            }
+            console.log(this.view.name)
+            console.log(this.infoPokemon)
+            console.log(this.weight)
+       });
+      
   }
 }
