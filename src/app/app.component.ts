@@ -43,7 +43,9 @@ export class AppComponent implements OnInit {
   statName = [];
   weight: number;
   types = [];
-  type = []
+  type = [];
+  allType = [];
+  pokemonType = []
   
   url:string = 'http://pokeapi.co/api/v2/pokemon/?limit=12'
  
@@ -60,15 +62,14 @@ export class AppComponent implements OnInit {
           for(let i=0; i<this.Pokemons.length;i++){
             this.Pokemons[i].id = i+1
           }
+          
         }
         else if(this.count>0 ){
           for(let i=0; i<this.Pokemons.length;i++){
             this.Pokemons[i].id = i+1*(this.count*12+1)
           }
         }
-        // console.log(this.Pokemons)
       })
-
   }
   nextList(){
      this.url = this.next;
@@ -108,4 +109,24 @@ export class AppComponent implements OnInit {
        });
       
   }
+  
+  sortByType(){
+    this.http.get<any>('http://pokeapi.co/api/v2/type/?limit=999')
+      .subscribe(data => {
+        this.allType = data.results
+        console.log( this.allType)
+      })
+  }
+
+  sortByOneType(type){
+    this.http.get<any>(`${type.url}`)
+      .subscribe(data => {
+        for(let i=0;i<data.pokemon.length; i++){
+          this.pokemonType.push(data.pokemon[i].pokemon)
+        }
+
+        console.log(this.pokemonType)
+      })
+  }
+  
 }

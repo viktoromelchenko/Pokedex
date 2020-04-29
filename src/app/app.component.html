@@ -1,7 +1,7 @@
 <h1 class="logo">Pokedex</h1>
 <div class="main">
     <div class="pokedex">
-        <div class="card" *ngFor="let pokemon of Pokemons; let i=index" (click)="onePokemon(this.pokemon)">
+        <div class="card" *ngFor="let pokemon of Pokemons; let i=index" (click)="onePokemon(this.pokemon)" >
             <img src= "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{ pokemon.id | number:'3.0'}}.png" alt="" class="img_list">
             <p>{{ pokemon.name }}</p>
         </div>
@@ -15,7 +15,7 @@
             <h4>{{ view?.id | number:'3.0'}}</h4>
           </div>
           <div class="type">
-            <p  *ngFor="let type of type">{{ type.name }}</p>
+            <p class="type_name" *ngFor="let type of type">{{ type.name }}</p>
           </div>
           <div class="tab">
             <div class="name_stat" >
@@ -26,14 +26,17 @@
               <p class="point_namber" *ngFor="let point of stat">{{point.base_stat}}</p>
               <p  class="point_namber">{{ weight }}</p>
             </div>
-            <!-- <p>{{weight }}</p> -->
           </div>
         </div>
+      <div class="allType">
+        <p class="type_name" *ngFor="let type of allType" (click)="sortByOneType(type)">{{type.name}}</p>
+      </div>
     </div>
 </div>
 <div class="buttons">
     
     <button  class="btn-danger btn" (click)="previousList()" [disabled]="count==0"> Previus </button>
     <button class="btn-success btn" (click)="nextList()"> Next</button>
+    <button class="btn btn-info" (click)="sortByType()">Sort by type</button>
 
 </div>
